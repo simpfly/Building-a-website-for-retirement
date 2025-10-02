@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>养网站防老 - 全流程速查手册</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #f39c12;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background: var(--light);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow);
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .step-number {
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        
+        .step-title {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .step-body {
+            padding: 20px;
+        }
+        
+        .keyword {
+            background-color: #e0f7fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin: 15px 0 10px 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin: 30px 0 20px 0;
+        }
+        
+        .kdroi-section {
+            background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .formula {
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+            border: 2px dashed var(--primary);
+        }
+        
+        .ad-tip {
+            background: #f5f5dc;
+            border-left: 5px solid var(--accent);
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .tools-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .tool {
+            background: white;
+            border: 2px solid var(--primary);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .tab-btn {
+                width: 100%;
+            }
+            
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>养网站防老全流程速查手册</h1>
+        <p class="subtitle">网站建设 · SEO优化 · 流量获取 · 变现策略</p>
+    </header>
+    
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="steps">建站步骤</button>
+        <button class="tab-btn" data-tab="seo">SEO优化</button>
+        <button class="tab-btn" data-tab="traffic">流量获取</button>
+        <button class="tab-btn" data-tab="monetization">流量变现</button>
+        <button class="tab-btn" data-tab="community">社群与资源</button>
+    </div>
+    
+    <div class="content-section active" id="steps">
+        <h2 class="section-title">📌 建站流程全步骤</h2>
+
+        <!-- Step 0 -->
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第0步：零基础编程入门</h2>
+                <span class="step-number">步骤 0</span>
+            </div>
+            <div class="step-body">
+                <p><strong>资源：</strong>B站28.5分钟HTML/CSS免费入门视频教程</p>
+                <ul>
+                    <li>零基础者只需掌握基础HTML/CSS即可制作工具类网站</li>
+                    <li>使用Windows记事本编写代码 + 浏览器查看效果</li>
+                    <li>后续可逐步学习JavaScript实现交互功能</li>
+                    <li>开发网站视为"数字资产"，具有长期复利效应</li>
+                </ul>
+                <div class="ad-tip">
+                    🔥 实用建议：无需追求完美代码，优先实现功能上线，后续迭代优化
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 1 -->
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第1步：需求挖掘</h2>
+                <span class="step-number">步骤 1</span>
+            </div>
+            <div class="step-body">
+                <p><strong>工具：</strong>Semrush, SimilarWeb</p>
+                <p><strong>策略：</strong>筛选竞争低、搜索量大的"generator"类关键词</p>
+                <ul>
+                    <li>关注"新需求"：如社交媒体账号生成器</li>
+                    <li>验证真实场景：如"youtube phone number generator"用于绕过验证</li>
+                    <li>评估商业价值：CPC > $0.5 可考虑Adsense变现</li>
+                </ul>
+                <div class="tools-box">
+                    <div class="tool">Semrush 关键词分析</div>
+                    <div class="tool">谷歌搜索建议词</div>
+                    <div class="tool">GPT搜索意图分析</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 1.5 -->
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第1.5步：关键词价值评估公式</h2>
+                <span class="step-number">步骤 1.5</span>
+            </div>
+            <div class="step-body">
+                <div class="formula">
+                    KDROI = 搜索量(Volume) × CPC(点击单价) ÷ 优化难度(KD)
+                </div>
+                
+                <div class="kdroi-section">
+                    <h3>筛选标准：</h3>
+                    <ul>
+                        <li>优化难度(KD)：0-29分（优先低难度）</li>
+                        <li>搜索量：>500/月</li>
+                        <li>CPC价格：≥ $0.5美元</li>
+                        <li>计算KDROI：筛选>800高价值词例："audiobook calculator"=2468</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第2步：搜索意图分析</h2>
+                <span class="step-number">步骤 2</span>
+            </div>
+            <div class="step-body">
+                <p><strong>方法：</strong>谷歌搜索推荐词 + GPT意图分析</p>
+                <p><strong>示例：</strong>"phone number generator for youtube"</p>
+                <ul>
+                    <li>可能意图：创建账户、绕过验证码、功能测试</li>
+                    <li>解决方案：设计合规功能+用户教育提示</li>
+                    <li>网页框架：问题说明 → 功能实现 → 免责声明</li>
+                </ul>
+                <div class="ad-tip">
+                    💡 GPT分析提示词："这些用户在寻找什么？他们的核心需求是什么？"
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第3步：GPT生成网页模板</h2>
+                <span class="step-number">步骤 3</span>
+            </div>
+            <div class="step-body">
+                <h3>提示词关键点：</h3>
+                <ul>
+                    <li>明确布局要求："首页含10国选项导航，响应式设计"</li>
+                    <li>指定功能元素："带生成按钮的国家详情页"</li>
+                    <li>添加SEO元素："每个国家页面有唯一title和meta description"</li>
+                </ul>
+                
+                <h3>生成后优化：</h3>
+                <ul>
+                    <li>添加schema.org结构化数据</li>
+                    <li>设置语言标签 &lt;html lang="en"&gt;</li>
+                    <li>压缩图片资源（Tinypng工具）</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第4步：布局与样式优化</h2>
+                <span class="step-number">步骤 4</span>
+            </div>
+            <div class="step-body">
+                <h3>重点优化项：</h3>
+                <ul>
+                    <li>导航栏：清晰分类 + hover效果</li>
+                    <li>按钮样式：取消纯色填充改为边框线风格</li>
+                    <li>Logo文本：设置title属性增强SEO</li>
+                    <li>广告位预留：Header, Content, Footer三区域</li>
+                </ul>
+                
+                <p><strong>CSS关键原则：</strong></p>
+                <ul>
+                    <li>移动优先设计（media query）</li>
+                    <li>避免使用影响性能的CSS效果</li>
+                    <li>广告容器使用固定高度防止页面抖动</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Step 5 -->
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第5步：内链系统建设</h2>
+                <span class="step-number">步骤 5</span>
+            </div>
+            <div class="step-body">
+                <h3>核心策略：</h3>
+                <ul>
+                    <li>首页 → 国家页：使用锚文本链接（如中国手机号生成器）</li>
+                    <li>国家页 → 首页：正文区域添加文本链接</li>
+                    <li>相关页互链：功能类似的国家页互连（如英美号码互链）</li>
+                </ul>
+                
+                <h3>权重传递规则：</h3>
+                <ul>
+                    <li>每个内页设置3个广告位（页头/内容中/页脚）</li>
+                    <li>首页内链数 ≤ 100，防止权重稀释</li>
+                    <li>深度页面不超过3级（首页→目录页→详情页）</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Step 6 -->
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第6步：多语言部署</h2>
+                <span class="step-number">步骤 6</span>
+            </div>
+            <div class="step-body">
+                <p><strong>实现路径：</strong>/en /hi /tl子目录结构</p>
+                <h3>GPT翻译要点：</h3>
+                <ul>
+                    <li>提供参考译文："请参考谷歌翻译的标准术语"</li>
+                    <li>分段处理：避免一次性翻译完整页面</li>
+                    <li>格式保留："保持HTML标签结构不变"</li>
+                    <li>人工校验：重点检查专业术语（如技术名词）</li>
+                </ul>
+                <div class="ad-tip">
+                    ⚠️ 关键：在 &lt;head&gt; 添加 &lt;link rel="alternate"&gt; 语言关系标签
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 7 -->
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第7步：部署上线</h2>
+                <span class="step-number">步骤 7</span>
+            </div>
+            <div class="step-body">
+                <h3>部署流程：</h3>
+                <ol>
+                    <li>注册域名：Namecheap（含连字符更易通过）</li>
+                    <li>DNS解析：Cloudflare设置A记录指向主机IP</li>
+                    <li>静态托管：GitHub Pages / Vercel 上传代码</li>
+                    <li>HTTPS强制：部署后开启Full模式</li>
+                </ol>
+                
+                <h3>必做检查：</h3>
+                <ul>
+                    <li>跨浏览器测试：Chrome, Firefox, Safari</li>
+                    <li>移动端适配：Google Mobile-Friendly Test</li>
+                    <li>清理测试内容/链接</li>
+                    <li>生成sitemap.xml文件</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section" id="seo">
+        <h2 class="section-title">🔍 SEO优化核心技术</h2>
+        
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">关键词战略布局</h2>
+            </div>
+            <div class="step-body">
+                <h3>Semrush实战流程：</h3>
+                <ol>
+                    <li>输入种子词搜索（如"online generator"）</li>
+                    <li>筛选条件：Volume>600, KD值0-29, CPC>$0.3</li>
+                    <li>导出CSV/XLSX数据表</li>
+                    <li>新增KDROI列：公式=(B2*D2)/C2（其中B=Volume, D=CPC, C=KD）</li>
+                    <li>对KDROI降序排序，取TOP10执行</li>
+                </ol>
+                
+                <h3>避坑注意：</h3>
+                <ul>
+                    <li>避免流量虚高词（如"free online"）</li>
+                    <li>筛选意图明确的商业词（如"generate business phone number"）</li>
+                    <li>拒绝零CPC关键词（无法变现）</li>
+                    <li>优先长尾词（3-5个单词组合）</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">SEO页面优化策略</h2>
+            </div>
+            <div class="step-body">
+                <h3>标题规范：</h3>
+                <ul>
+                    <li>首页："网站名称 - 核心功能描述"（60字符以内）</li>
+                    <li>内容页："关键词短语 - 网站名称"（如"China Phone Generator - ExampleSite"）</li>
+                    <li>避免堆砌：同页面关键词≤3个</li>
+                </ul>
+                
+                <h3>技术优化重点：</h3>
+                <ul>
+                    <li>加速加载：图片压缩+CDN分发</li>
+                    <li>结构优化：H1-H6层级清晰（每页仅1个H1）</li>
+                    <li>添加JSON-LD结构化数据</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">谷歌AI内容政策指南</h2>
+            </div>
+            <div class="step-body">
+                <p><strong>核心原则：</strong>重质量轻来源，需满足EEAT标准</p>
+                
+                <h3>高质量内容创建：</h3>
+                <ul>
+                    <li>提示词设计："参考以下专业文章风格，创建关于[主题]的指南，要求包含案例、步骤说明和注意事项"</li>
+                    <li>加入人工洞察："根据个人测试经验添加实用建议"</li>
+                    <li>添加原创图表说明：使用Canva生成补充视觉内容</li>
+                </ul>
+                
+                <div class="ad-tip">
+                    ✅ 谷歌友好型内容特征：有观点立场、引用数据来源、内容深度≥竞品
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section" id="traffic">
+        <h2 class="section-title">🚀 流量获取全策略</h2>
+        
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">第8步：搜索引擎索引加速</h2>
+                <span class="step-number">流量起点</span>
+            </div>
+            <div class="step-body">
+                <h3>收录三步加速法：</h3>
+                <ol>
+                    <li>提交Google Search Console</li>
+                    <li>XML站点地图提交</li>
+                    <li>主动外链建设</li>
+                </ol>
+                
+                <h3>安全外链来源：</h3>
+                <ul>
+                    <li>技术论坛签名档</li>
+                    <li>GitHub项目README</li>
+                    <li>行业目录站</li>
+                    <li>相关博客评论区</li>
+                </ul>
+                
+                <p><strong>72小时加速方案：</strong></p>
+                <ol>
+                    <li>Cloudflare开启Argo隧道</li>
+                    <li>老站首页添加新站链接</li>
+                    <li>提交Indexing API请求</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">四维度流量来源矩阵</h2>
+            </div>
+            <div class="step-body">
+                <div class="tools-box">
+                    <div class="tool">1.搜索引擎（70%）</div>
+                    <div class="tool">2.免费推广（20%）</div>
+                    <div class="tool">3.付费软文（5%）</div>
+                    <div class="tool">4.用户传播（5%）</div>
+                </div>
+                
+                <h3>免费推广渠道清单：</h3>
+                <ul>
+                    <li>Reddit相关subreddit发帖（避免纯广告）</li>
+                    <li>独立开发者社区帖子分享</li>
+                    <li>提交至行业工具导航站</li>
+                    <li>相关社交媒体话题互动</li>
+                </ul>
+                
+                <h3>裂变传播技巧：</h3>
+                <ul>
+                    <li>设计"分享结果"按钮（如号码+分享图标）</li>
+                    <li>添加社交媒体嵌入代码</li>
+                    <li>设置简单的推荐奖励机制</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section" id="monetization">
+        <h2 class="section-title">💰 流量变现策略</h2>
+        
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">Adsense优化公式</h2>
+            </div>
+            <div class="step-body">
+                <div class="formula">
+                    收益 = 流量 × 广告可见率 × 点击率(CTR) × CPC单价
+                </div>
+                
+                <h3>关键策略：</h3>
+                <ul>
+                    <li>每页布局3个广告位（页头/内容中/页脚）</li>
+                    <li>使用固定广告位高度防止页面跳动</li>
+                    <li>内容匹配广告类型（信息页放文字广告，工具页放横幅）</li>
+                </ul>
+                
+                <h3>实战成功案例：</h3>
+                <p>电子书站优化后数据（2016）：</p>
+                <table style="width:100%; border-collapse: collapse; margin:15px 0;">
+                    <tr style="background-color: #f1f1f1;">
+                        <th style="padding:8px; border:1px solid #ccc;">月份</th>
+                        <th style="padding:8px; border:1px solid #ccc;">优化前</th>
+                        <th style="padding:8px; border:1px solid #ccc;">优化后（广告位+加载速度）</th>
+                    </tr>
+                    <tr>
+                        <td style="padding:8px; border:1px solid #ccc;">6月</td>
+                        <td style="padding:8px; border:1px solid #ccc;">$874</td>
+                        <td style="padding:8px; border:1px solid #ccc;">$1475</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding:8px; border:1px solid #ccc;">11月</td>
+                        <td style="padding:8px; border:1px solid #ccc;">-</td>
+                        <td style="padding:8px; border:1px solid #ccc;">$2100</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">变现多元化路径</h2>
+            </div>
+            <div class="step-body">
+                <div class="tools-box">
+                    <div class="tool">AdSense广告</div>
+                    <div class="tool">定向收费服务</div>
+                    <div class="tool">联盟营销</div>
+                    <div class="tool">网站交易</div>
+                </div>
+                
+                <h3>AdSense黄金布局原则：</h3>
+                <ul>
+                    <li>首屏广告不超过页面高度的15%</li>
+                    <li>内容广告靠近用户操作区域</li>
+                    <li>避免广告堆叠（间距≥150px）</li>
+                </ul>
+                
+                <h3>进阶变现方式：</h3>
+                <ul>
+                    <li>API收费功能（高频率请求限制）</li>
+                    <li>导出报告PDF收费下载</li>
+                    <li>推广相关专业服务（如企业号码解决方案）</li>
+                    <li>模板或定制化服务的销售</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section" id="community">
+        <h2 class="section-title">👥 社群与资源</h2>
+        
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">出海赚钱社群资源</h2>
+            </div>
+            <div class="step-body">
+                <h3>核心价值：</h3>
+                <ul>
+                    <li>每日新需求关键词分享</li>
+                    <li>实时流量监控报告解读</li>
+                    <li>网站交易中介服务（估值指导）</li>
+                    <li>建站模板库（KDROI计算表等）</li>
+                </ul>
+                
+                <h3>热门话题：</h3>
+                <ul>
+                    <li>建站基础与快速部署</li>
+                    <li>SEO优化实战策略</li>
+                    <li>海外推广渠道测评</li>
+                    <li>AdSense优化与提现</li>
+                    <li>Semrush/SW工具深度使用</li>
+                </ul>
+                <div class="ad-tip">
+                    📬 加入方式：搜索微信号 qiayue | GeFeiSvip
+                </div>
+            </div>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-header">
+                <h2 class="step-title">必备工具库</h2>
+            </div>
+            <div class="step-body">
+                <div class="tools-box">
+                    <div class="tool">Semrush（SEO分析）</div>
+                    <div class="tool">SimilarWeb（流量分析）</div>
+                    <div class="tool">Google Search Console</div>
+                </div>
+                <div class="tools-box">
+                    <div class="tool">Vercel（部署）</div>
+                    <div class="tool">Cloudflare（CDN）</div>
+                    <div class="tool">Namecheap（域名）</div>
+                </div>
+            
+                <h3>免费资源推荐：</h3>
+                <ul>
+                    <li>HTML学习：B站28.5分钟入门教程</li>
+                    <li>网站测试：Google Pagespeed Insights</li>
+                    <li>多语言部署：Cloudflare Workers免费计划</li>
+                    <li>统计工具：Google Analytics基础版</li>
+                    <li>内容生成：ChatGPT 3.5免费版本</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 标签切换功能
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const contentSections = document.querySelectorAll('.content-section');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 移除所有活动标签和内容区域
+                tabBtns.forEach(b => b.classList.remove('active'));
+                contentSections.forEach(section => section.classList.remove('active'));
+                
+                // 添加活动类到当前标签
+                btn.classList.add('active');
+                
+                // 显示对应内容区域
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
